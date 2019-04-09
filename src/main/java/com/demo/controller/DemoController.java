@@ -11,7 +11,6 @@ public class DemoController {
 
     @RequestMapping(value = "/toIndex")
     public String toIndex(){
-        System.out.println(121111);
         return "index";
     }
 
