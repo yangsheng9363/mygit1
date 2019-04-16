@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.demo.mapper.LoginUserMapper">
+  <resultMap id="BaseResultMap" type="com.demo.model.LoginUser">
+    <id column="LOGIN_ID" property="loginId" jdbcType="VARCHAR" />
+    <result column="INDEXS" property="indexs" jdbcType="NUMERIC" />
+    <result column="DEPOT_ID" property="depotId" jdbcType="VARCHAR" />
+    <result column="PASSWORD" property="password" jdbcType="VARCHAR" />
+    <result column="REAL_NAME" property="realName" jdbcType="VARCHAR" />
+    <result column="SEX" property="sex" jdbcType="VARCHAR" />
+    <result column="WORK_PHONE" property="workPhone" jdbcType="VARCHAR" />
+    <result column="MOBILE_PHONE" property="mobilePhone" jdbcType="VARCHAR" />
+    <result column="EMIAL" property="emial" jdbcType="VARCHAR" />
+    <result column="IS_ADMIN" property="isAdmin" jdbcType="VARCHAR" />
+    <result column="LOCKS" property="locks" jdbcType="NUMERIC" />
+    <result column="USER_TYPE" property="userType" jdbcType="VARCHAR" />
+    <result column="UKEY" property="ukey" jdbcType="VARCHAR" />
+    <result column="DEVICE_ID" property="deviceId" jdbcType="VARCHAR" />
+    <result column="PERSON" property="person" jdbcType="VARCHAR" />
+    <result column="PERSON_ID" property="personId" jdbcType="VARCHAR" />
+    <result column="ADDRESS" property="address" jdbcType="VARCHAR" />
+    <result column="CAN_DEAL" property="canDeal" jdbcType="NUMERIC" />
+    <result column="PS_LEVEL" property="psLevel" jdbcType="NUMERIC" />
+    <result column="USEKEY" property="usekey" jdbcType="NUMERIC" />
+    <result column="USEDEVICE" property="usedevice" jdbcType="NUMERIC" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    LOGIN_ID, INDEXS, DEPOT_ID, PASSWORD, REAL_NAME, SEX, WORK_PHONE, MOBILE_PHONE, EMIAL,
+    IS_ADMIN, LOCKS, USER_TYPE, UKEY, DEVICE_ID, PERSON, PERSON_ID, ADDRESS, CAN_DEAL,
+    PS_LEVEL, USEKEY, USEDEVICE
+  </sql>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from T_LOGIN_USER
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_LOGIN_USER
+    where LOGIN_ID = #{loginId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from T_LOGIN_USER
+    where LOGIN_ID = #{loginId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.demo.model.LoginUser" >
+    insert into T_LOGIN_USER (LOGIN_ID, INDEXS, DEPOT_ID, 
+      PASSWORD, REAL_NAME, SEX, 
+      WORK_PHONE, MOBILE_PHONE, EMIAL, 
+      IS_ADMIN, LOCKS, USER_TYPE, 
+      UKEY, DEVICE_ID, PERSON, 
+      PERSON_ID, ADDRESS, CAN_DEAL, 
+      PS_LEVEL, USEKEY, USEDEVICE
+      )
+    values (#{loginId,jdbcType=VARCHAR}, #{indexs,jdbcType=NUMERIC}, #{depotId,jdbcType=VARCHAR}, 
+      #{password,jdbcType=VARCHAR}, #{realName,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, 
+      #{workPhone,jdbcType=VARCHAR}, #{mobilePhone,jdbcType=VARCHAR}, #{emial,jdbcType=VARCHAR}, 
+      #{isAdmin,jdbcType=VARCHAR}, #{locks,jdbcType=NUMERIC}, #{userType,jdbcType=VARCHAR}, 
+      #{ukey,jdbcType=VARCHAR}, #{deviceId,jdbcType=VARCHAR}, #{person,jdbcType=VARCHAR}, 
+      #{personId,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{canDeal,jdbcType=NUMERIC}, 
+      #{psLevel,jdbcType=NUMERIC}, #{usekey,jdbcType=NUMERIC}, #{usedevice,jdbcType=NUMERIC}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.demo.model.LoginUser" >
+    insert into T_LOGIN_USER
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="loginId != null" >
+        LOGIN_ID,
+      </if>
+      <if test="indexs != null" >
+        INDEXS,
+      </if>
+      <if test="depotId != null" >
+        DEPOT_ID,
+      </if>
+      <if test="password != null" >
+        PASSWORD,
+      </if>
+      <if test="realName != null" >
+        REAL_NAME,
+      </if>
+      <if test="sex != null" >
+        SEX,
+      </if>
+      <if test="workPhone != null" >
+        WORK_PHONE,
+      </if>
+      <if test="mobilePhone != null" >
+        MOBILE_PHONE,
+      </if>
+      <if test="emial != null" >
+        EMIAL,
+      </if>
+      <if test="isAdmin != null" >
+        IS_ADMIN,
+      </if>
+      <if test="locks != null" >
+        LOCKS,
+      </if>
+      <if test="userType != null" >
+        USER_TYPE,
+      </if>
+      <if test="ukey != null" >
+        UKEY,
+      </if>
+      <if test="deviceId != null" >
+        DEVICE_ID,
+      </if>
+      <if test="person != null" >
+        PERSON,
+      </if>
+      <if test="personId != null" >
+        PERSON_ID,
+      </if>
+      <if test="address != null" >
+        ADDRESS,
+      </if>
+      <if test="canDeal != null" >
+        CAN_DEAL,
+      </if>
+      <if test="psLevel != null" >
+        PS_LEVEL,
+      </if>
+      <if test="usekey != null" >
+        USEKEY,
+      </if>
+      <if test="usedevice != null" >
+        USEDEVICE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="loginId != null" >
+        #{loginId,jdbcType=VARCHAR},
+      </if>
+      <if test="indexs != null" >
+        #{indexs,jdbcType=NUMERIC},
+      </if>
+      <if test="depotId != null" >
+        #{depotId,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="realName != null" >
+        #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="workPhone != null" >
+        #{workPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="mobilePhone != null" >
+        #{mobilePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="emial != null" >
+        #{emial,jdbcType=VARCHAR},
+      </if>
+      <if test="isAdmin != null" >
+        #{isAdmin,jdbcType=VARCHAR},
+      </if>
+      <if test="locks != null" >
+        #{locks,jdbcType=NUMERIC},
+      </if>
+      <if test="userType != null" >
+        #{userType,jdbcType=VARCHAR},
+      </if>
+      <if test="ukey != null" >
+        #{ukey,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceId != null" >
+        #{deviceId,jdbcType=VARCHAR},
+      </if>
+      <if test="person != null" >
+        #{person,jdbcType=VARCHAR},
+      </if>
+      <if test="personId != null" >
+        #{personId,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="canDeal != null" >
+        #{canDeal,jdbcType=NUMERIC},
+      </if>
+      <if test="psLevel != null" >
+        #{psLevel,jdbcType=NUMERIC},
+      </if>
+      <if test="usekey != null" >
+        #{usekey,jdbcType=NUMERIC},
+      </if>
+      <if test="usedevice != null" >
+        #{usedevice,jdbcType=NUMERIC},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.demo.model.LoginUser" >
+    update T_LOGIN_USER
+    <set >
+      <if test="indexs != null" >
+        INDEXS = #{indexs,jdbcType=NUMERIC},
+      </if>
+      <if test="depotId != null" >
+        DEPOT_ID = #{depotId,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        PASSWORD = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="realName != null" >
+        REAL_NAME = #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        SEX = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="workPhone != null" >
+        WORK_PHONE = #{workPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="mobilePhone != null" >
+        MOBILE_PHONE = #{mobilePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="emial != null" >
+        EMIAL = #{emial,jdbcType=VARCHAR},
+      </if>
+      <if test="isAdmin != null" >
+        IS_ADMIN = #{isAdmin,jdbcType=VARCHAR},
+      </if>
+      <if test="locks != null" >
+        LOCKS = #{locks,jdbcType=NUMERIC},
+      </if>
+      <if test="userType != null" >
+        USER_TYPE = #{userType,jdbcType=VARCHAR},
+      </if>
+      <if test="ukey != null" >
+        UKEY = #{ukey,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceId != null" >
+        DEVICE_ID = #{deviceId,jdbcType=VARCHAR},
+      </if>
+      <if test="person != null" >
+        PERSON = #{person,jdbcType=VARCHAR},
+      </if>
+      <if test="personId != null" >
+        PERSON_ID = #{personId,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        ADDRESS = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="canDeal != null" >
+        CAN_DEAL = #{canDeal,jdbcType=NUMERIC},
+      </if>
+      <if test="psLevel != null" >
+        PS_LEVEL = #{psLevel,jdbcType=NUMERIC},
+      </if>
+      <if test="usekey != null" >
+        USEKEY = #{usekey,jdbcType=NUMERIC},
+      </if>
+      <if test="usedevice != null" >
+        USEDEVICE = #{usedevice,jdbcType=NUMERIC},
+      </if>
+    </set>
+    where LOGIN_ID = #{loginId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.demo.model.LoginUser" >
+    update T_LOGIN_USER
+    set INDEXS = #{indexs,jdbcType=NUMERIC},
+      DEPOT_ID = #{depotId,jdbcType=VARCHAR},
+      PASSWORD = #{password,jdbcType=VARCHAR},
+      REAL_NAME = #{realName,jdbcType=VARCHAR},
+      SEX = #{sex,jdbcType=VARCHAR},
+      WORK_PHONE = #{workPhone,jdbcType=VARCHAR},
+      MOBILE_PHONE = #{mobilePhone,jdbcType=VARCHAR},
+      EMIAL = #{emial,jdbcType=VARCHAR},
+      IS_ADMIN = #{isAdmin,jdbcType=VARCHAR},
+      LOCKS = #{locks,jdbcType=NUMERIC},
+      USER_TYPE = #{userType,jdbcType=VARCHAR},
+      UKEY = #{ukey,jdbcType=VARCHAR},
+      DEVICE_ID = #{deviceId,jdbcType=VARCHAR},
+      PERSON = #{person,jdbcType=VARCHAR},
+      PERSON_ID = #{personId,jdbcType=VARCHAR},
+      ADDRESS = #{address,jdbcType=VARCHAR},
+      CAN_DEAL = #{canDeal,jdbcType=NUMERIC},
+      PS_LEVEL = #{psLevel,jdbcType=NUMERIC},
+      USEKEY = #{usekey,jdbcType=NUMERIC},
+      USEDEVICE = #{usedevice,jdbcType=NUMERIC}
+    where LOGIN_ID = #{loginId,jdbcType=VARCHAR}
+  </update>
+</mapper>
